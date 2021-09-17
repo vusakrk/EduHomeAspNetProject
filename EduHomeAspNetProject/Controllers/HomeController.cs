@@ -27,7 +27,12 @@ namespace EduHomeAspNetProject.Controllers
                 ServiceArea = _context.ServiceAreas.FirstOrDefault(),
                 ViewCourse = _context.ViewCourses.FirstOrDefault(),
                 Courses = _context.Courses.OrderByDescending(p => p.Id).Take(3).ToList(),
-                CourseDetails = _context.CourseDetails.ToList(),
+                CourseDetails = _context.CourseDetails,
+                NoticeVideo=_context.NoticeVideos.FirstOrDefault(),
+                NoticeBoards=_context.NoticeBoards.OrderByDescending(p=>p.Id),
+                Events=_context.Events.OrderByDescending(p=>p.Id).Take(4),
+                Testimonials=_context.Testimonials,
+                Blogs=_context.Blogs.OrderByDescending(p=>p.Id).Take(3)
 
             };
             return View(homeVM);

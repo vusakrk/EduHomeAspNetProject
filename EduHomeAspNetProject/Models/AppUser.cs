@@ -11,6 +11,7 @@ namespace EduHomeAspNetProject.Models
     {
         [Required,StringLength(100)]
         public string Fullname { get; set; }
+        public bool HasDeleted { get; set; }
         public int? CourseId { get; set; }
         public Course Course { get; set; }
     }

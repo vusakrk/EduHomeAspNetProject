@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.Models
 {
-    public class EventTag
+    public class SpeakerEvent
     {
         public int Id { get; set; }
-        public Tag Tag { get; set; }
-        public int TagId { get; set; }
-        public Event Event { get; set; }
         public int EventId { get; set; }
+        public virtual Event Event { get; set; }
+        public int SpeakerId { get; set; }
+        public virtual Speaker Speaker { get; set; }
     }
 }
