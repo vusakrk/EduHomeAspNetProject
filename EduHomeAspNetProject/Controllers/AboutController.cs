@@ -19,8 +19,7 @@ namespace EduHomeAspNetProject.Controllers
         
         public IActionResult Index()
         {
-            ViewBag.Title = "About Us";
-            TempData["controllerName"] = this.ControllerContext.RouteData.Values["controller"].ToString();
+            
             HomeVM homeVM = new HomeVM()
             {
                 About = _context.Abouts.FirstOrDefault(),

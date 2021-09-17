@@ -9,14 +9,15 @@ namespace EduHomeAspNetProject.Models
     public class CourseDetail
     {
         public int Id { get; set; }
-        [Required,StringLength(200)]
+        [Required]
         public string Content { get; set; }
-        [Required,StringLength(200)]
+        [Required]
         public string AboutCourse { get; set; }
         [Required]
         public string HowtoApply { get; set; }
         [Required]
         public string Certification { get; set; }
-        public Course Course { get; set; }
+        public string CertificationDesc { get; set; }
+        public virtual Course Course { get; set; }
     }
 }

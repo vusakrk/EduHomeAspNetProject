@@ -35,6 +35,10 @@ public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         public DbSet<BlogDetail> BlogDetails { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<TeacherDetail> TeacherDetails { get; set; }
+        public DbSet<TeacherSkill> TeacherSkills { get; set; }
+        public DbSet<Tag> Tags { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,6 +46,16 @@ public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
                 .HasOne(e => e.EventDetail)
                 .WithOne(e => e.Event)
                 .HasForeignKey<EventDetail>(ed => ed.EventId);
+
+            modelBuilder.Entity<Teacher>()
+                .HasOne(t => t.TeacherSkill)
+                .WithOne(t => t.Teacher)
+                .HasForeignKey<TeacherSkill>(s => s.TeacherId);
+
+            modelBuilder.Entity<Teacher>()
+                .HasOne(t => t.TeacherDetail)
+                .WithOne(t => t.Teacher)
+                .HasForeignKey<TeacherDetail>(s => s.TeacherId);
         }
     }
 }

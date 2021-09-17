@@ -13,6 +13,10 @@
     <Compile Remove="Migrations\20210916221016_ViewCourseMigrationAdded.Designer.cs" />
     <Compile Remove="Migrations\20210917000322_CourseMigrationAdded.cs" />
     <Compile Remove="Migrations\20210917000322_CourseMigrationAdded.Designer.cs" />
+    <Compile Remove="Migrations\20210917182016_Migrations.cs" />
+    <Compile Remove="Migrations\20210917182016_Migrations.Designer.cs" />
+    <Compile Remove="Migrations\20210917195602_ChangeCourseDetailModel.cs" />
+    <Compile Remove="Migrations\20210917195602_ChangeCourseDetailModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

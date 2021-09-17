@@ -4,14 +4,16 @@ using EduHomeAspNetProject.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EduHomeAspNetProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210917185617_AddCourseTableDescription")]
+    partial class AddCourseTableDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,14 +217,8 @@ namespace EduHomeAspNetProject.Migrations
                     b.Property<int>("CourseFeatureId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("HasDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -252,18 +248,17 @@ namespace EduHomeAspNetProject.Migrations
 
                     b.Property<string>("AboutCourse")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("Certification")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CertificationDesc")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("HowtoApply")
                         .IsRequired()
@@ -284,8 +279,8 @@ namespace EduHomeAspNetProject.Migrations
                     b.Property<string>("Assesments")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClassDuration")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("ClassDuration")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Duration")
                         .HasColumnType("decimal(18,2)");

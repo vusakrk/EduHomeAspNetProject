@@ -12,7 +12,7 @@ namespace EduHomeAspNetProject.Models
         [Required]
         public DateTime Starts { get; set; }
         public decimal Duration { get; set; }
-        public decimal ClassDuration { get; set; }
+        public string ClassDuration { get; set; }
         public string SkillLevel { get; set; }
         public string Language { get; set; }
         public int Strudents { get; set; }

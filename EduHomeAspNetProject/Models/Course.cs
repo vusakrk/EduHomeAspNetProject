@@ -15,6 +15,10 @@ namespace EduHomeAspNetProject.Models
         public string Name { get; set; }
         [Required]
         public string Image { get; set; }
+        public string Description { get; set; }
+        [Required]
+        public bool HasDeleted { get; set; }
+        public DateTime? DeletedTime { get; set; }
         public int CourseDetailId { get; set; }
         public virtual CourseDetail CourseDetail { get; set; }
         public int CourseFeatureId { get; set; }
