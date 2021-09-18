@@ -10,16 +10,16 @@ namespace EduHomeAspNetProject.Models
 {
     public class Slider
     {
+        
         public int Id { get; set; }
-        [Required,StringLength(150)]
+        [Required,StringLength(200)]
         public string Title { get; set; }
-        [Required]
+        [Required,StringLength(300)]
         public string Description { get; set; }
-        [Required]
+        [Required,StringLength(255)]
         public string Image { get; set; }
-        [NotMapped,Required]
+        [Required,NotMapped]
         public IFormFile Photo { get; set; }
-        [NotMapped,Required]
-        public IFormFile[] Photos { get; set; }
+
     }
 }

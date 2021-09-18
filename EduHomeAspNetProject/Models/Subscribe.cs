@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.Models
 {
-    public class NoticeVideo
+    public class Subscribe
     {
         public int Id { get; set; }
-        [Required,StringLength(255)]
-        public string Link { get; set; }
+        [Required,DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
     }
 }

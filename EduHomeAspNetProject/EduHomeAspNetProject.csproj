@@ -5,21 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210916213029_HeaderContentAndBrandLogoAdd.cs" />
-    <Compile Remove="Migrations\20210916213029_HeaderContentAndBrandLogoAdd.Designer.cs" />
-    <Compile Remove="Migrations\20210916220922_ViewCourseMigrationAdded.cs" />
-    <Compile Remove="Migrations\20210916220922_ViewCourseMigrationAdded.Designer.cs" />
-    <Compile Remove="Migrations\20210916221016_ViewCourseMigrationAdded.cs" />
-    <Compile Remove="Migrations\20210916221016_ViewCourseMigrationAdded.Designer.cs" />
-    <Compile Remove="Migrations\20210917000322_CourseMigrationAdded.cs" />
-    <Compile Remove="Migrations\20210917000322_CourseMigrationAdded.Designer.cs" />
-    <Compile Remove="Migrations\20210917182016_Migrations.cs" />
-    <Compile Remove="Migrations\20210917182016_Migrations.Designer.cs" />
-    <Compile Remove="Migrations\20210917195602_ChangeCourseDetailModel.cs" />
-    <Compile Remove="Migrations\20210917195602_ChangeCourseDetailModel.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.18">
@@ -43,8 +28,6 @@
     <Folder Include="Areas\AdminPanel\Views\" />
     <Folder Include="Helpers\" />
     <Folder Include="Extentions\" />
-    <Folder Include="ViewComponents\" />
-    <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
 
 </Project>

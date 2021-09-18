@@ -11,21 +11,17 @@ namespace EduHomeAspNetProject.Models
     public class Event
     {
         public int Id { get; set; }
-        [Required, StringLength(50)]
-        public string Title { get; set; }
-        [Required]
+        [Required,StringLength(255)]
+        public string Name { get; set; }
+        [Required,StringLength(150)]
         public string Image { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
         [Required]
+        public string Date { get; set; }
+        public string StartInterval { get; set; }
+        public string EndInterval { get; set; }
+        [StringLength(150)]
         public string Place { get; set; }
-        [NotMapped,Required]
+        [Required, NotMapped]
         public IFormFile Photo { get; set; }
-        public bool HasDeleted { get; set; }
-        public int EventDetailId { get; set; }
-        public EventDetail EventDetail { get; set; }
-        public virtual ICollection<SpeakerEvent> SpeakerEvents { get; set; }
-        
     }
 }

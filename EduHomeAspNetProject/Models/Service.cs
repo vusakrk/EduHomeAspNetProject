@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.Models
 {
-    public class NoticeVideo
+    public class Service
     {
         public int Id { get; set; }
         [Required,StringLength(255)]
-        public string Link { get; set; }
+        public string Name { get; set; }
+        [Required,StringLength(300)]
+        public string Description { get; set; }
     }
 }

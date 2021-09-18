@@ -11,13 +11,16 @@ namespace EduHomeAspNetProject.Models
     public class About
     {
         public int Id { get; set; }
-        [Required]
-        public string Image { get; set; }
-        [NotMapped,Required]
-        public IFormFile Photo { get; set; }
+        [Required,StringLength(100)]
         public string Title { get; set; }
-        public string Content1 { get; set; }
-        public string Content2 { get; set; }
+        [Required,StringLength(350)]
+        public string DescOne { get; set; }
+        [Required, StringLength(350)]
+        public string DescTwo { get; set; }
+        [Required,StringLength(100)]
+        public string Image { get; set; }
+        [Required,NotMapped]
+        public IFormFile Photo { get; set; }
 
     }
 }

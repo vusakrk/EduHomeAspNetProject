@@ -26,7 +26,8 @@ namespace EduHomeAspNetProject
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<AppUser, IdentityRole>(IdentityOptions => {
+            services.AddIdentity<AppUser, IdentityRole>(IdentityOptions =>
+            {
                 IdentityOptions.Password.RequireDigit = true;
                 IdentityOptions.Password.RequireLowercase = true;
                 IdentityOptions.Password.RequireUppercase = true;
@@ -40,7 +41,8 @@ namespace EduHomeAspNetProject
                 IdentityOptions.Lockout.AllowedForNewUsers = true;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
             services.AddControllersWithViews();
-            services.AddDbContext<AppDbContext>(options => {
+            services.AddDbContext<AppDbContext>(options =>
+            {
                 options.UseSqlServer(_config.GetConnectionString("Default"));
             });
         }
@@ -56,16 +58,17 @@ namespace EduHomeAspNetProject
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            //app.UseSession();
             app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-            name: "areas",
-            pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                   name: "areas",
+                   pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
           );
                 endpoints.MapControllerRoute(
                     "default",
-                     "{controller=Home}/{action=Index}/{Id?}"
+                    "{controller=Home}/{action=Index}/{Id?}"
                     );
             });
         }

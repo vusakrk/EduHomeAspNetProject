@@ -9,9 +9,10 @@ namespace EduHomeAspNetProject.Models
     public class NoticeBoard
     {
         public int Id { get; set; }
-        [Required]
-        public DateTime Date { get; set; }
-        [Required, StringLength(200)]
-        public string Content { get; set; }
+        [Required,StringLength(50)]
+        public string Date { get; set; }
+        [StringLength(255)]
+        public string Description { get; set; }
+        
     }
 }
