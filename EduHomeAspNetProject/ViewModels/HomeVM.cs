@@ -1,8 +1,5 @@
 ﻿using EduHomeAspNetProject.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.ViewModels
 {
@@ -14,5 +11,7 @@ namespace EduHomeAspNetProject.ViewModels
         public List<NoticeBoard> NoticeBoards { get; set; }
         public NoticeVideo NoticeVideo { get; set; }
         public List<Event> Events { get; set; }
+        public List<Course> Courses { get; set; }
+        public IEnumerable<Testimonial> Testimonials { get; set; }
     }
 }

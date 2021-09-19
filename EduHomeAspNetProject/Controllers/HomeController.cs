@@ -2,10 +2,7 @@
 using EduHomeAspNetProject.Models;
 using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.Controllers
 {
@@ -26,6 +23,8 @@ namespace EduHomeAspNetProject.Controllers
                 NoticeBoards = _context.NoticeBoards.OrderByDescending(b=>b.Id).ToList(),
                 NoticeVideo = _context.NoticeVideos.FirstOrDefault(),
                 Events= _context.Events.OrderByDescending(e=>e.Id).Take(2).ToList(),
+                Courses = _context.Courses.OrderByDescending(c=>c.Id).Take(3).ToList(),
+                Testimonials = _context.Testimonials.ToList()
             };
 
             return View(homeVM);

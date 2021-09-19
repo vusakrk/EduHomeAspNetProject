@@ -1,11 +1,6 @@
 ﻿using EduHomeAspNetProject.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NewsletterSub.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.DAL
 {
@@ -23,17 +18,27 @@ namespace EduHomeAspNetProject.DAL
         public DbSet<NoticeVideo> NoticeVideos { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
-        public DbSet<NewsletterSubscription> NewsletterSubscriptions { get; set; }
-
+        public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<TeacherDegree> TeacherDegrees { get; set; }
+        public DbSet<TeacherFaculty> TeacherFaculties { get; set; }
+        public DbSet<TeacherHobbie> TeacherHobbies { get; set; }
+        public DbSet<TeacherInfo> TeacherInfos { get; set; }
+        public DbSet<TeacherSkill> TeacherSkills { get; set; }
+        public DbSet<Hobbie> Hobbies { get; set; }
+        public DbSet<Degree> Degrees { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Any existing code...
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Teacher>()
+                .HasOne(t => t.TeacherInfo)
+                .WithOne(t => t.Teacher)
+                .HasForeignKey<TeacherInfo>(TeacherDetail => TeacherDetail.TeacherId);
 
-            modelBuilder.BuildNewsletterSubModels();
-
-            // Any existing code...
+            modelBuilder.Entity<Teacher>()
+                .HasOne(t => t.TeacherSkill)
+                .WithOne(t => t.Teacher)
+                .HasForeignKey<TeacherSkill>(s => s.Id);
         }
     }
-
 }

@@ -1,11 +1,7 @@
-﻿using EduHomeAspNetProject.DAL;
-using EduHomeAspNetProject.Models;
+﻿using EduHomeAspNetProject.Models;
 using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.Controllers
@@ -14,12 +10,10 @@ namespace EduHomeAspNetProject.Controllers
     {
         private UserManager<AppUser> _userManager;
         private SignInManager<AppUser> _signInManager;
-        private RoleManager<IdentityRole> _roleManager;
         public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
         }
         public IActionResult Register()
         {
@@ -81,7 +75,7 @@ namespace EduHomeAspNetProject.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Ïndex", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
     }
