@@ -41,6 +41,7 @@ namespace EduHomeAspNetProject
                 IdentityOptions.Lockout.AllowedForNewUsers = true;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
             services.AddControllersWithViews();
+            services.AddNewsletterService();
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(_config.GetConnectionString("Default"));

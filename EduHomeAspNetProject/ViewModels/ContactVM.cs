@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.ViewModels
 {
-    public class CourseVM
+    public class ContactVM
     {
-        public BgImage BgImage { get; set; }
-        public IEnumerable<Course> Courses { get; set; }
         public ContactMessage ContactMessage { get; set; }
+        public BgImage BgImage { get; set; }
+        public Setting Setting { get; set; }
     }
 }

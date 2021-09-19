@@ -27,7 +27,7 @@ namespace EduHomeAspNetProject.Models
         public string Vimeo { get; set; }
         [StringLength(50)]
         public string Twitter { get; set; }
-        [StringLength(50)]
+        [StringLength(255)]
         public string Address { get; set; }
         [StringLength(50)]
         public string Mail { get; set; }
