@@ -8,20 +8,19 @@ using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.Models
 {
-    public class Course
+    public class Blog
     {
         public int Id { get; set; }
         [Required]
         public string Image { get; set; }
+        [Required, MinLength(33), MaxLength(63)]
+        public string Title { get; set; }
+        [Required, MaxLength(6)]
+        public string Author { get; set; }
         [Required]
-        public string Name { get; set; }
-        [Required,StringLength(300)]
-        public string Description { get; set; }
-        public int CourseDetailId { get; set; }
-        public CourseDetail CourseDetail { get; set; }
-        public int CourseFeatureId { get; set; }
-        public CourseFeature CourseFeature { get; set; }
-        public List<AppUser> AppUsers { get; set; }
+        public DateTime Date { get; set; }
+        [Required, MinLength(200)]
+        public string Content { get; set; }
         [Required,NotMapped]
         public IFormFile Photo { get; set; }
     }

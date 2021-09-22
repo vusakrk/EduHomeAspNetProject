@@ -4,14 +4,16 @@ using EduHomeAspNetProject.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EduHomeAspNetProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210922080707_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,11 +223,6 @@ namespace EduHomeAspNetProject.Migrations
                     b.Property<int>("CourseFeatureId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300);
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -329,6 +326,7 @@ namespace EduHomeAspNetProject.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Definition")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EndInterval")
@@ -376,22 +374,6 @@ namespace EduHomeAspNetProject.Migrations
                     b.HasIndex("SpeakerId");
 
                     b.ToTable("EventSpeakers");
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.Hobby", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Hobbies");
                 });
 
             modelBuilder.Entity("EduHomeAspNetProject.Models.NoticeBoard", b =>
@@ -582,169 +564,6 @@ namespace EduHomeAspNetProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscribers");
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.Teacher", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<int>("TeacherAboutId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherSkillId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherStateId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TeacherAboutId");
-
-                    b.HasIndex("TeacherSkillId")
-                        .IsUnique();
-
-                    b.HasIndex("TeacherStateId");
-
-                    b.ToTable("Teachers");
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.TeacherAbout", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("About")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Degree")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pinterest")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Profession")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Skype")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Twitter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Vimeo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TeacherAbouts");
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.TeacherHobby", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("HobbyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HobbyId");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("TeacherHobbies");
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.TeacherSkill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Communication")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Design")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Development")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Innovation")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Language")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeamLeader")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TeacherSkills");
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.TeacherState", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("TeachFaculty")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(9)")
-                        .HasMaxLength(9);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TeacherStates");
                 });
 
             modelBuilder.Entity("EduHomeAspNetProject.Models.Testimonial", b =>
@@ -943,42 +762,6 @@ namespace EduHomeAspNetProject.Migrations
                     b.HasOne("EduHomeAspNetProject.Models.Speaker", "Speaker")
                         .WithMany("EventSpeakers")
                         .HasForeignKey("SpeakerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.Teacher", b =>
-                {
-                    b.HasOne("EduHomeAspNetProject.Models.TeacherAbout", "TeacherAbout")
-                        .WithMany()
-                        .HasForeignKey("TeacherAboutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EduHomeAspNetProject.Models.TeacherSkill", "TeacherSkill")
-                        .WithOne("Teacher")
-                        .HasForeignKey("EduHomeAspNetProject.Models.Teacher", "TeacherSkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EduHomeAspNetProject.Models.TeacherState", "TeacherState")
-                        .WithMany("Teachers")
-                        .HasForeignKey("TeacherStateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EduHomeAspNetProject.Models.TeacherHobby", b =>
-                {
-                    b.HasOne("EduHomeAspNetProject.Models.Hobby", "Hobby")
-                        .WithMany("TeacherHobbies")
-                        .HasForeignKey("HobbyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EduHomeAspNetProject.Models.Teacher", "Teacher")
-                        .WithMany("TeacherHobbies")
-                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -2,6 +2,7 @@
 using EduHomeAspNetProject.Models;
 using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace EduHomeAspNetProject.Controllers
             contactVM.BgImage = _context.BgImages.FirstOrDefault();
             if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(contactVM);
             }
             ContactMessage contactMessage = new ContactMessage
             {
@@ -40,9 +41,11 @@ namespace EduHomeAspNetProject.Controllers
                 Subject = contactVM.ContactMessage.Subject,
                 Message = contactVM.ContactMessage.Message
             };
+            
             _context.ContactMessages.Add(contactMessage);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
     }
 }

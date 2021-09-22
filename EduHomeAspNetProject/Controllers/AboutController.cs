@@ -1,4 +1,5 @@
 ﻿using EduHomeAspNetProject.DAL;
+using EduHomeAspNetProject.Models;
 using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,6 +28,38 @@ namespace EduHomeAspNetProject.Controllers
                 NoticeBoards = _context.NoticeBoards.ToList()
             };
             return View(aboutVM);
+        }
+        public async Task<IActionResult> Detail(int?id)
+        {
+            if (id == null)
+                return NotFound();
+            Course course = await _context.Courses.FindAsync(id);
+            if (course == null)
+                return NotFound();
+            CourseDetailVM courseDetailVM = new CourseDetailVM
+            {
+                BgImage = _context.BgImages.FirstOrDefault(),
+                Course = course,
+                CourseDetails = _context.CourseDetails.ToList(),
+                Blogs = _context.Blogs.OrderByDescending(p=>p.Id).Take(5).ToList(),
+                CourseFeatures = _context.CourseFeatures.ToList()
+            };
+            return View(courseDetailVM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Detail(CourseDetailVM courseDetailVM)
+        {
+            ContactMessage contactMessage = new ContactMessage
+            {
+                Name = courseDetailVM.ContactMessage.Name,
+                Email = courseDetailVM.ContactMessage.Email,
+                Subject = courseDetailVM.ContactMessage.Subject,
+                Message = courseDetailVM.ContactMessage.Message
+            };
+            _context.ContactMessages.Add(contactMessage);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Detail));
         }
     }
 }

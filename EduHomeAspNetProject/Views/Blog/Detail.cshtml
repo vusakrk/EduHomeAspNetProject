@@ -1,0 +1,123 @@
+﻿@model BlogDetailVM
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>blog details</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Blog Start -->
+<div class="blog-details-area pt-150 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog-details">
+                    <div class="blog-details-img">
+                        <img src="~/img/blog/@Model.Blog.Image" alt="blog-details">
+                    </div>
+                    <div class="blog-details-content">
+                        <h2>@Model.Blog.Title </h2>
+                        <h6>By @Model.Blog.Author  / @Model.Blog.Date.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture)  /  <i class="fa fa-comments-o"></i> 4</h6>
+                        <p>@Html.Raw(Model.Blog.Content)</p>
+                    </div>
+                    <div class="reply-area">
+                        <h3>LEAVE A REPLY</h3>
+                        <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut<br> the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Name</p>
+                                    <input asp-for="@Model.ContactMessage.Name">
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Name"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Email</p>
+                                    <input asp-for="@Model.ContactMessage.Email">
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Email"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Subject</p>
+                                    <input asp-for="@Model.ContactMessage.Subject">
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Subject"></span>
+                                    <p>Message</p>
+                                    <textarea asp-for="@Model.ContactMessage.Message" cols="15" rows="10"></textarea>
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Message"></span>
+                                </div>
+                            </div>
+                            <button class="reply-btn" type="submit"><span>send message</span></button>
+                            <p class="form-messege"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-sidebar right">
+                    <div class="single-blog-widget mb-47">
+                        <h3>search</h3>
+                        <div class="blog-search">
+                            <form id="search" action="#">
+                                <input type="search" placeholder="Search..." name="search" class="search-field" autocomplete="off" />
+                                <ul class="list-group my-list-group" style="position:absolute;width:100%;z-index:99999">
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="single-blog-widget mb-47">
+                        <h3>categories</h3>
+                        <ul>
+                            @foreach (Course course in Model.Courses)
+                            {
+
+                <li><a asp-action="Detail" asp-controller="Course" asp-route-id="@course.Id">@course.Name.ToUpper()</a></li>}
+                        </ul>
+                    </div>
+                    <div class="single-blog-widget mb-47">
+                        <div class="single-blog-banner">
+                            <a href="blog-details.html" id="blog"><img src="~/img/blog/blog-img.jpg" alt="blog"></a>
+                            <h2>best<br> eductaion<br> theme</h2>
+                        </div>
+                    </div>
+                    <div class="single-blog-widget mb-47">
+                        <h3>latest post</h3>
+                        @foreach (Event _event in Model.Events)
+                        {
+
+            <div class="single-post mb-30">
+                <div class="single-post-img">
+                    <a asp-action="Detail" asp-controller="Event" asp-route-id="@_event.Id" style="width:33% !important; margin-top:5px!important">
+                        <img src="~/img/event/@_event.Image" alt="post">
+                        <div class="blog-hover">
+                            <i class="fa fa-link"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="single-post-content">
+                    <h4><a asp-action="Detail" asp-controller="Event" asp-route-id="@_event.Id">@_event.Name.ToUpper()</a></h4>
+                    <p>June 20, 2017 @_event.Date.ToString("dd MMM, yyyy", CultureInfo.InvariantCulture)</p>
+                </div>
+            </div>}
+                    </div>
+                    <div class="single-blog-widget">
+                        <h3>tags</h3>
+                        <div class="single-tag">
+                            <a asp-action="Index" asp-controller="Course" class="mr-10 mb-10">course</a>
+                            <a asp-action="Index" asp-controller="Event">events</a>
+                            <a asp-action="Index" asp-controller="Teacher" class="mb-10">teachers</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->

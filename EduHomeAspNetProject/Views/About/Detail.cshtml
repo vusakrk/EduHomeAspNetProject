@@ -1,0 +1,162 @@
+﻿@model CourseDetailVM
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>courses details</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Blog Start -->
+<div class="courses-details-area blog-area pt-150 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="courses-details">
+                    <div class="courses-details-img">
+                        <img src="~/img/course/@Model.Course.Image" alt="courses-details">
+                    </div>
+                    <div class="course-details-content">
+                        <h2>@Model.Course.Name</h2>
+                        @foreach (CourseDetail detail in Model.CourseDetails)
+                        {
+                            if (detail.Id == Model.Course.CourseDetailId)
+                            {
+            <p>@Html.Raw(detail.Content) </p>
+
+                                <div class="course-details-left">
+                                    <div class="single-course-left">
+                                        <h3>about course</h3>
+                                        <p>@Html.Raw(detail.AboutCourse)</p>
+                                    </div>
+                                    <div class="single-course-left">
+                                        <h3>how to apply</h3>
+                                        <p> @Html.Raw(detail.HowToApply)</p>
+                                    </div>
+                                    <div class="single-course-left">
+                                        <h3>certification</h3>
+                                        <p class="margin">@Html.Raw(detail.Certification)</p>
+
+                                    </div>
+                                </div>}
+                                            }
+                        @foreach (CourseFeature feature in Model.CourseFeatures)
+                        {
+                            if (feature.Id == Model.Course.CourseFeatureId)
+                            {
+
+            <div class="course-details-right">
+                <h3>COURSE FEATURES</h3>
+                <ul>
+                    <li>starts <span>@feature.StartingDate.ToString("dd MMM, yyyy", CultureInfo.InvariantCulture)</span></li>
+                    <li>duration <span>@feature.Duration Month</span></li>
+                    <li>class duration <span>@feature.ClassDuration hours</span></li>
+                    <li>skill level <span>@feature.SkillLevel</span></li>
+                    <li>language <span>@feature.Language</span></li>
+                    <li>students <span>@feature.Students</span></li>
+                    <li>assesments <span>@feature.Assesments</span></li>
+                </ul>
+                <h3 class="red">course fee $@feature.Fee</h3>
+            </div>}
+                        }
+                    </div>
+                    <div class="reply-area">
+                        <h3>LEAVE A REPLY</h3>
+                        <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut<br> the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Name</p>
+                                    <input asp-for="@Model.ContactMessage.Name">
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Name"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Email</p>
+                                    <input asp-for="@Model.ContactMessage.Email">
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Email"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Subject</p>
+                                    <input asp-for="@Model.ContactMessage.Subject">
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Subject"></span>
+                                    <p>Message</p>
+                                    <textarea asp-for="@Model.ContactMessage.Message" cols="15" rows="10"></textarea>
+                                    <span class="text-danger" asp-validation-for="@Model.ContactMessage.Message"></span>
+                                </div>
+                            </div>
+                            <button class="reply-btn" type="submit"><span>send message</span></button>
+                            <p class="form-messege"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-sidebar right">
+                    <div class="single-blog-widget mb-50">
+                        <h3>search</h3>
+                        <div class="blog-search">
+                            <form id="search" action="#">
+                                <input type="search" placeholder="Search..." name="search" class="search-field" autocomplete="off" />
+                                <ul class="list-group my-list-group" style="position:absolute;width:100%;z-index:99999">
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="single-blog-widget mb-50">
+                        <h3>Latest Blogs</h3>
+                        <ul>
+                            @foreach (Blog blog in Model.Blogs)
+                            {
+
+                <li><a asp-action="Detail" asp-controller="Blog" asp-route-id="@blog.Id">@blog.Title.ToUpper() (@blog.Id)</a></li>}
+                        </ul>
+                    </div>
+                    <div class="single-blog-widget mb-50">
+                        <h3>professional teachers</h3>
+                        @*@foreach (Teacher teacher in Model.Teachers)
+                        {
+
+            <div class="single-post mb-30">
+                <div class="single-post-img" style="width:30% !important; margin-top:15px!important">
+                    <a asp-action="Detail" asp-controller="Teacher" asp-route-id="@teacher.Id">
+                        <img src="~/img/teacher/@teacher.Image" alt="post">
+                        <div class="blog-hover">
+                            <i class="fa fa-link"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="single-post-content mt-50">
+                    <h4><a asp-action="Detail" asp-controller="Teacher" asp-route-id="@teacher.Id">@teacher.Name.ToUpper()</a></h4>
+                </div>
+            </div>}*@
+                    </div>
+                    <div class="single-blog-widget">
+                        <h3>tags</h3>
+                        <div class="single-tag">
+                            <a asp-action="Index" asp-controller="Course" class="mr-10 mb-10">course</a>
+                            <a asp-action="Index" asp-controller="Event">events</a>
+                            <a asp-action="Index" asp-controller="Teacher" class="mb-10">teachers</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+
+@section Scripts{
+
+    <partial name="_Validation" />
+
+}
+
