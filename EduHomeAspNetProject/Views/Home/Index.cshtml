@@ -159,48 +159,31 @@
             </div>
         </div>
         <div class="row">
+            
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="single-event mb-35">
-                    @foreach (Event item in Model.Events.Take(4))
+                    @foreach (Event item in Model.Events)
                     {
-                        <div class="event-img">
-                            <a href="event-details.html"><img src="img/event/@item.Image" alt="event"></a>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-event mb-35" style="display:flex !important;align-items:center !important;padding:0px!important">
+                        <div class="event-img" style="width:50% !important">
+                            <a asp-action="Detail" asp-controller="Event" asp-route-id="@item.Id"><img src="~/img/event/@item.Image" alt="event"></a>
                         </div>
-                        <div class="event-content text-left">
-                            <h3>@item.Date</h3>
-                            <h4><a href="event-details.html">@item.Name</a></h4>
+                        <div class="event-content text-left" style="padding: 0px !important">
+                            <h3>@item.Date.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)</h3>
+                            <h4><a asp-action="Detail" asp-controller="Event" asp-route-id="@item.Id">@item.Name</a></h4>
                             <ul>
                                 <li><i class="fa fa-clock-o"></i>@item.StartInterval - @item.EndInterval</li>
                                 <li><i class="fa fa-map-marker"></i>@item.Place</li>
                             </ul>
                             <div class="event-content-right">
-                                <a class="default-btn" asp-controller="Event" asp-action="Details" asp-route-id="@item.Id">join now</a>
+                                <a class="default-btn" asp-action="Detail" asp-controller="Event" asp-route-id="@item.Id">join now</a>
                             </div>
                         </div>
-                    }
+                    </div>
+                </div>            }
                 </div>
 
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="single-event hidden-sm hidden-xs">
-                    @foreach (var item in Model.Events.Take(4))
-                    {
-                        <div class="event-img">
-                            <a href="event-details.html"><img src="img/event/@item.Image" alt="event"></a>
-                        </div>
-                        <div class="event-content text-left">
-                            <h3>@item.Date</h3>
-                            <h4><a href="event-details.html">@item.Name</a></h4>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i>@item.StartInterval - @item.EndInterval</li>
-                                <li><i class="fa fa-map-marker"></i>@item.Place</li>
-                            </ul>
-                            <div class="event-content-right">
-                                <a class="default-btn" asp-controller="Event" asp-action="Details" asp-route-id="@item.Id">join now</a>
-                            </div>
-                        </div>
-                    }
-                </div>
             </div>
         </div>
     </div>

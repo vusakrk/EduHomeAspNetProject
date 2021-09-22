@@ -6,25 +6,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EduHomeAspNetProject.Controllers
 {
     public class BlogController : Controller
     {
+        
         private AppDbContext _context;
         public BlogController(AppDbContext context)
         {
             _context = context;
         }
+
         public IActionResult Index(int? page)
         {
-            ViewBag.PageCount = Math.Ceiling((decimal)_context.Blogs.Count() / 4);
+            ViewBag.page = page;
+            ViewBag.PageCount = Math.Ceiling((decimal)_context.Blogs.Count() / 3);
+
             BlogVM blogVM = new BlogVM
             {
                 BgImage = _context.BgImages.FirstOrDefault(),
                 Blogs = _context.Blogs.OrderByDescending(p => p.Id).Take(4).ToList(),
-                //Events = _context.Events.OrderByDescending(p => p.Id).Take(3).ToList()
+                Events = _context.Events.OrderByDescending(p => p.Id).Take(3).ToList()
             };
+
             ViewBag.Pagination = 1;
             if (page != null)
             {

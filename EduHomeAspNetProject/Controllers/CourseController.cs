@@ -62,7 +62,7 @@ namespace EduHomeAspNetProject.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Detail));
         }
-        public async Task<IActionResult>Search(string key)
+        public IActionResult Search(string key)
         {
             var model = _context.Courses.Where(p => p.Name.Contains(key)).Select(p => new Course { 
             Id = p.Id,

@@ -44,7 +44,7 @@ namespace EduHomeAspNetProject.Controllers
             EventDetailVM detailVM = new EventDetailVM
             {
                 BgImage = _context.BgImages.FirstOrDefault(),
-                Blog = _context.Blogs.OrderByDescending(p=>p.Id).Take(5).ToList(),
+                Blogs = _context.Blogs.OrderByDescending(p=>p.Id).Take(5).ToList(),
                 Courses = _context.Courses.ToList(),
                 Event = _event,
                 Speakers = speakers

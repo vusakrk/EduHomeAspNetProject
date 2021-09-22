@@ -1,0 +1,42 @@
+﻿@model EduHomeAspNetProject.Models.CourseDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CourseDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AboutCourse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AboutCourse)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HowToApply)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HowToApply)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Certification)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Certification)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
