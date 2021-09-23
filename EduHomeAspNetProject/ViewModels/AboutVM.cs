@@ -13,5 +13,6 @@ namespace EduHomeAspNetProject.ViewModels
         public List<Testimonial> Testimonials { get; set; }
         public NoticeVideo NoticeVideo { get; set; }
         public List<NoticeBoard> NoticeBoards { get; set; }
+        public List<Teacher> Teachers { get; set; }
     }
 }

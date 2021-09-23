@@ -71,6 +71,7 @@ namespace EduHomeAspNetProject.Controllers
             return RedirectToAction(nameof(Detail));
         }
             
+
         }
     }
 
