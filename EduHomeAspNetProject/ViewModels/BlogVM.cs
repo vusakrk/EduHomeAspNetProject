@@ -11,5 +11,9 @@ namespace EduHomeAspNetProject.ViewModels
         public BgImage BgImage { get; set; }
         public List<Blog> Blogs { get; set; }
         public List<Event> Events { get; set; }
+        public int PageCount { get; set; }
+        public int CurrentPage { get; set; }
+        public List<BlogComment> BlogComments { get; set; }
+
     }
 }

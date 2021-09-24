@@ -23,17 +23,17 @@
             <div class="col-md-8">
                 <div class="blog-details">
                     <div class="blog-details-img">
-                        <img src="~/img/blog/@Model.Blog.Image" alt="blog-details">
+                        <img style="width:767px;height:367px" src="~/img/blog/@Model.Blog.Image" alt="blog-details">
                     </div>
                     <div class="blog-details-content">
                         <h2>@Model.Blog.Title </h2>
-                        <h6>By @Model.Blog.Author  / @Model.Blog.Date.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture)  /  <i class="fa fa-comments-o"></i> 4</h6>
+                        <h6>By @Model.Blog.Author  / @Model.Blog.Date.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture)  /  <i class="fa fa-comments-o"></i> @(Model.BlogComments.Count() > 0 ? Model.BlogComments.Count() : 0)</h6>
                         <p>@Html.Raw(Model.Blog.Content)</p>
                     </div>
                     <div class="reply-area">
                         <h3>LEAVE A REPLY</h3>
                         <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut<br> the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
-                        <form method="post">
+                        <form method="post" asp-controller="Blog" asp-action="Index" asp-route-id="@Model.Blog.Id">
                             <div class="row">
                                 <div class="col-md-12">
                                     <p>Name</p>
@@ -75,10 +75,11 @@
                     <div class="single-blog-widget mb-47">
                         <h3>categories</h3>
                         <ul>
-                            @foreach (Course course in Model.Courses)
+                            @foreach (var item in Model.BlogCategories)
                             {
+                                <li><a asp-controller="Blog" asp-action="Index" asp-route-id="@item.Id">@item.Name (@Model.BlogCategories.Count)</a></li>
+                            }
 
-                <li><a asp-action="Detail" asp-controller="Course" asp-route-id="@course.Id">@course.Name.ToUpper()</a></li>}
                         </ul>
                     </div>
                     <div class="single-blog-widget mb-47">

@@ -22,6 +22,7 @@ namespace EduHomeAspNetProject.Models
         public int CourseFeatureId { get; set; }
         public CourseFeature CourseFeature { get; set; }
         public List<AppUser> AppUsers { get; set; }
+        public int Count { get; set; }
         [Required,NotMapped]
         public IFormFile Photo { get; set; }
     }

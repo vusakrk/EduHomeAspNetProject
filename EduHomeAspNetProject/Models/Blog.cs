@@ -23,5 +23,6 @@ namespace EduHomeAspNetProject.Models
         public string Content { get; set; }
         [Required,NotMapped]
         public IFormFile Photo { get; set; }
+        public List<BlogComment> BlogComments { get; set; }
     }
 }

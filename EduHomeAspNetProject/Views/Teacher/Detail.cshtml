@@ -1,4 +1,9 @@
 ﻿@model TeacherDetailVM
+
+@{ 
+    ViewBag.Title = "TeacherDetails";
+ }
+
 <!-- Banner Area Start -->
 <div class="banner-area-wrapper">
     <div class="banner-area text-center">
@@ -38,8 +43,7 @@
                             <span>hobbies: </span>
                             @foreach (Hobby hobby in Model.Hobbies)
                             {
-                               <p style="display:inline-block">@hobby.Name</p>
-                            }
+                <p style="display:inline-block">@hobby.Name</p>}
                         </li>
                         <li><span>faculty: </span>@Model.TeacherState.TeachFaculty, @Model.TeacherState.Name</li>
                     </ul>

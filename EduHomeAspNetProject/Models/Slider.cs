@@ -20,6 +20,8 @@ namespace EduHomeAspNetProject.Models
         public string Image { get; set; }
         [Required,NotMapped]
         public IFormFile Photo { get; set; }
+        [NotMapped, Required]
+        public IFormFile[] Photos { get; set; }
 
     }
 }

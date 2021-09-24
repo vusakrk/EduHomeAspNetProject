@@ -53,17 +53,11 @@
                 <div class="course-content">
                     <h3><a asp-action="Detail" asp-controller="Course" asp-route-id="@course.Id">@course.Name</a></h3>
                     <p>@course.Description</p>
-                    @*@foreach (CourseDetail detail in Model.CourseDetails)
-                    {
-                        if (course.CourseDetailId == detail.Id)
-                        {
-        <p>@Html.Raw(detail.Content)</p>}
-                        }*@
-
                     <a class="default-btn" asp-action="Detail" asp-controller="Course" asp-route-id="@course.Id">read more</a>
                 </div>
             </div>
-        </div>            }
+        </div>            
+             }
 
 
         </div>

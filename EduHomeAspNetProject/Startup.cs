@@ -1,5 +1,6 @@
 using EduHomeAspNetProject.DAL;
 using EduHomeAspNetProject.Models;
+using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,10 +23,14 @@ namespace EduHomeAspNetProject
         {
             _config = config;
         }
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            
+
             services.AddIdentity<AppUser, IdentityRole>(IdentityOptions =>
             {
                 IdentityOptions.Password.RequireDigit = true;
@@ -41,6 +46,7 @@ namespace EduHomeAspNetProject
                 IdentityOptions.Lockout.AllowedForNewUsers = true;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
             services.AddControllersWithViews();
+            services.Configure<SMTPConfigModel>(_config.GetSection("SMTPConfig"));
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(_config.GetConnectionString("Default"));
@@ -54,11 +60,10 @@ namespace EduHomeAspNetProject
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            //app.UseSession();
             app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {

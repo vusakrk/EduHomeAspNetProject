@@ -1,4 +1,9 @@
 ﻿@model BlogVM
+
+@{ 
+    ViewBag.Title = "Index"; 
+ }
+
 <!-- Banner Area Start -->
 <div class="banner-area-wrapper">
     <div class="banner-area text-center">
@@ -25,18 +30,18 @@
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="single-blog mb-60">
                         <div class="blog-img">
-                            <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id"><img src="~/img/blog/blog3.jpg" alt="blog"></a>
+                            <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id"><img  src="~/img/blog/@blog.Image" alt="blog"></a>
                             <div class="blog-hover">
                                 <i class="fa fa-link"></i>
                             </div>
                         </div>
                         <div class="blog-content">
                             <div class="blog-top">
-                                <p>By @blog.Author  /  @blog.Date.ToString("MMM dd,yyy",CultureInfo.InvariantCulture)  /  <i class="fa fa-comments-o"></i> 4</p>
+                                <p>By @blog.Author  /  @blog.Date.ToString("MMM dd,yyy", CultureInfo.InvariantCulture)  /  <i class="fa fa-comments-o"></i> @(Model.BlogComments.Count()>0? Model.BlogComments.Count():0)</p>
                             </div>
                             <div class="blog-bottom">
                                 <h2><a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">I must explain to you how all this a mistaken idea </a></h2>
-                                <a asp-controller="Blog"asp-action="Detail" asp-route-id="@blog.Id">read more</a>
+                                <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">read more</a>
                             </div>
                         </div>
                     </div>
@@ -48,9 +53,17 @@
                 <div class="pagination">
                     <ul>
 
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        @for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            if (Model.CurrentPage == i)
+                            {
+                              <li><a>2</a></li> 
+                            }
+                                    else
+                                    {
+                                      <li><a href="@Url.Action("index","Blog",new { page = i })">@i</a></li>
+                                    }
+                         }
 
                     </ul>
                 </div>

@@ -3,10 +3,8 @@ using EduHomeAspNetProject.Models;
 using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using X.PagedList;
 
 namespace EduHomeAspNetProject.Controllers
 {
@@ -19,23 +17,23 @@ namespace EduHomeAspNetProject.Controllers
             _context = context;
         }
 
-        public IActionResult Index(int? page)
+        public IActionResult Index(int page = 1)
         {
-            ViewBag.page = page;
-            ViewBag.PageCount = Math.Ceiling((decimal)_context.Blogs.Count() / 3);
-
             BlogVM blogVM = new BlogVM
             {
                 BgImage = _context.BgImages.FirstOrDefault(),
-                Blogs = _context.Blogs.OrderByDescending(p => p.Id).Take(4).ToList(),
-                Events = _context.Events.OrderByDescending(p => p.Id).Take(3).ToList()
+                Blogs = _context.Blogs.OrderByDescending(p => p.Id).Take(3).ToList(),
+                Events = _context.Events.OrderByDescending(p => p.Id).Take(3).ToList(),
+                BlogComments = _context.BlogComments.ToList(),
+                
             };
 
-            ViewBag.Pagination = 1;
-            if (page != null)
-            {
-                ViewBag.Pagination = page;
-            }
+            BlogVM blog = new BlogVM();
+            blog.CurrentPage = page;
+            blog.PageCount = Convert.ToInt32(Math.Ceiling(_context.Blogs.Count() / 4.0));
+            blog.Blogs = _context.Blogs.OrderByDescending(p => p.Id).Skip((page - 1) * 4).Take(4).ToList();
+
+
             return View(blogVM);
         }
         public async Task<IActionResult> Detail(int? id)
@@ -51,24 +49,23 @@ namespace EduHomeAspNetProject.Controllers
                     BgImage = _context.BgImages.FirstOrDefault(),
                     Courses = _context.Courses.Take(4).ToList(),
                     Events = _context.Events.OrderByDescending(p=>p.Id).Take(3).ToList(),
-                    Blog= blog
+                    Blog = blog,
+                    BlogComments = _context.BlogComments.ToList(),
+                    BlogCategories = _context.BlogCategories.ToList()
                 };
+
                 return View(detailVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Detail(EventDetailVM detailVM)
+        public IActionResult Detail(BlogCommentVM blogCommentVM,int id)
         {
-            ContactMessage contactMessage = new ContactMessage
-            {
-                Name = detailVM.ContactMessage.Name,
-                Email = detailVM.ContactMessage.Email,
-                Subject = detailVM.ContactMessage.Subject,
-                Message = detailVM.ContactMessage.Message
-            };
-            _context.ContactMessages.Add(contactMessage);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Detail));
+            BlogComment blogComment = new BlogComment();
+            blogComment.Message = blogCommentVM.Message;
+            blogComment.BlogId = id;
+            _context.BlogComments.Add(blogComment);
+            _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
             
 

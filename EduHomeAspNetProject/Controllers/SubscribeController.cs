@@ -22,7 +22,7 @@ namespace EduHomeAspNetProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Subscribe(FooterVM footerVM)
         {
-            bool exists = _context.Subscribers.Any(s => s.Email == footerVM.Subscribe.Email);
+            bool exists = _context.Subscribes.Any(s => s.Email == footerVM.Subscribe.Email);
             if (exists)
             {
                 return Content("This email already exist");
@@ -31,9 +31,9 @@ namespace EduHomeAspNetProject.Controllers
             {
                 Email = footerVM.Subscribe.Email
             };
-            _context.Subscribers.Add(subscribe);
+            _context.Subscribes.Add(subscribe);
             await _context.SaveChangesAsync();
-            return View();
+            return RedirectToAction("Index","Home");
         }
     }
 }

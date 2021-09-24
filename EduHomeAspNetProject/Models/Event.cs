@@ -24,6 +24,9 @@ namespace EduHomeAspNetProject.Models
         public string Place { get; set; }
         [Required]
         public string Content { get; set; }
+        public int EventCategoryId { get; set; }
+        //public EventCategory EventCategory { get; set; }
+        public EventComment EventComment { get; set; }
         public List<EventSpeaker> EventSpeakers { get; set; }
         [Required, NotMapped]
         public IFormFile Photo { get; set; }

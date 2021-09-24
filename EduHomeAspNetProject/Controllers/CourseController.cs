@@ -2,8 +2,6 @@
 using EduHomeAspNetProject.Models;
 using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,8 +21,8 @@ namespace EduHomeAspNetProject.Controllers
                 BgImage = _context.BgImages.FirstOrDefault(),
                 Courses = _context.Courses.OrderByDescending(p => p.Id).Take(9).ToList(),
                 CourseDetails = _context.CourseDetails.ToList(),
-                CourseFeatures = _context.CourseFeatures.ToList()
-            
+                CourseFeatures = _context.CourseFeatures.ToList(),
+                CourseCategories = _context.CourseCategories.ToList()
             };
             return View(courseVM);
         }
@@ -38,10 +36,13 @@ namespace EduHomeAspNetProject.Controllers
             CourseDetailVM detailVM = new CourseDetailVM
             {
                 BgImage = _context.BgImages.FirstOrDefault(),
-                Course = course,
+                Course = _context.Courses.Find(id),
                 CourseDetails = _context.CourseDetails.ToList(),
                 Blogs = _context.Blogs.OrderByDescending(p => p.Id).Take(5).ToList(),
-                CourseFeatures = _context.CourseFeatures.OrderByDescending(p => p.Id).ToList()
+                CourseFeatures = _context.CourseFeatures.OrderByDescending(p => p.Id).ToList(),
+                Teachers = _context.Teachers.Take(3).ToList(),
+                Tags = _context.Tags.Take(6).ToList(),
+                CourseCategories = _context.CourseCategories.Take(6).ToList()
 
             };
             return View(detailVM);
@@ -51,6 +52,7 @@ namespace EduHomeAspNetProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Detail(CourseDetailVM detailVM)
         {
+            
             ContactMessage contactMessage = new ContactMessage
             {
                 Name = detailVM.ContactMessage.Name,

@@ -3,4 +3,23 @@
 @foreach (Blog blog in Model.Blogs)
 {
 
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="single-blog mb-60">
+            <div class="blog-img">
+                <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id"><img src="~/img/blog/blog3.jpg" alt="blog"></a>
+                <div class="blog-hover">
+                    <i class="fa fa-link"></i>
+                </div>
+            </div>
+            <div class="blog-content">
+                <div class="blog-top">
+                    <p>By @blog.Author  /  @blog.Date.ToString("MMM dd,yyy", CultureInfo.InvariantCulture)  /  <i class="fa fa-comments-o"></i> 4</p>
+                </div>
+                <div class="blog-bottom">
+                    <h2><a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">I must explain to you how all this a mistaken idea </a></h2>
+                    <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
 }

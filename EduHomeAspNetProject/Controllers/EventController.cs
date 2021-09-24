@@ -2,7 +2,6 @@
 using EduHomeAspNetProject.Models;
 using EduHomeAspNetProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,8 +20,9 @@ namespace EduHomeAspNetProject.Controllers
             EventVM eventVM = new EventVM
             {
                 BgImage = _context.BgImages.FirstOrDefault(),
-                Event = _context.Events.OrderByDescending(p => p.Id).Take(4).ToList(),
+                Event = _context.Events.Take(9).ToList(),
                 Speakers = _context.Speakers.ToList(),
+                EventCategories = _context.EventCategories.ToList(),
                 Blogs = _context.Blogs.OrderByDescending(p=>p.Id).Take(3).ToList()
             };
             return View(eventVM);
@@ -47,24 +47,24 @@ namespace EduHomeAspNetProject.Controllers
                 Blogs = _context.Blogs.OrderByDescending(p=>p.Id).Take(5).ToList(),
                 Courses = _context.Courses.ToList(),
                 Event = _event,
-                Speakers = speakers
+                Speakers = speakers,
+                Tags = _context.Tags.ToList(),
+                EventCategories = _context.EventCategories.ToList()
             };
             return View(detailVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Detail(EventDetailVM eventDetailVM)
+        public  IActionResult Message(EventCommentVM eventCommentVM,int id)
         {
-            ContactMessage contactMessage = new ContactMessage
-            {
-                Name = eventDetailVM.ContactMessage.Name,
-                Email = eventDetailVM.ContactMessage.Email,
-                Subject = eventDetailVM.ContactMessage.Subject,
-                Message = eventDetailVM.ContactMessage.Message,
-            };
-            _context.ContactMessages.Add(contactMessage);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Detail));
+            
+            EventComment eventComment = new EventComment();
+            eventComment.Message = eventCommentVM.Message;
+            eventComment.EventId = id;
+            _context.EventComments.Add(eventComment);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
+        
     }
 }

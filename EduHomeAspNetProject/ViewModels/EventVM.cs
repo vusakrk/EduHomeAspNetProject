@@ -13,6 +13,7 @@ namespace EduHomeAspNetProject.ViewModels
         public List<Speaker> Speakers { get; set; }
         public List<EventSpeaker> EventSpeakers { get; set; }
         public List<Blog> Blogs { get; set; }
-        
+        public List<EventCategory> EventCategories { get; set; }
+
     }
 }

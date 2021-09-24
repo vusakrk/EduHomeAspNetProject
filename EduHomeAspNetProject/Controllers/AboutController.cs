@@ -25,7 +25,10 @@ namespace EduHomeAspNetProject.Controllers
                 About = _context.Abouts.FirstOrDefault(),
                 Testimonials = _context.Testimonials.ToList(),
                 NoticeVideo = _context.NoticeVideos.FirstOrDefault(),
-                NoticeBoards = _context.NoticeBoards.ToList()
+                NoticeBoards = _context.NoticeBoards.ToList(),
+                Setting = _context.Settings.FirstOrDefault(),
+                Teachers = _context.Teachers.ToList(),
+                TeacherAbouts = _context.TeacherAbouts.ToList()
             };
             return View(aboutVM);
         }
