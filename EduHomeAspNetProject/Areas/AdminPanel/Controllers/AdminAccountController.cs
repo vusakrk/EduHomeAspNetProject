@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace EduHomeAspNetProject.Areas.AdminPanel.Controllers
 {
+    [Area("AdminPanel")]
     public class AdminAccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -39,9 +40,6 @@ namespace EduHomeAspNetProject.Areas.AdminPanel.Controllers
                 Fullname = registerVM.FullName,
                 UserName = registerVM.Username,
                 Email = registerVM.Email,
-                
-                
-                
             };
             IdentityResult result = await _userManager.CreateAsync(user, registerVM.Password);
             if (!result.Succeeded)

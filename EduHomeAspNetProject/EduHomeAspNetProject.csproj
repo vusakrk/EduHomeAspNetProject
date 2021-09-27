@@ -21,6 +21,8 @@
     <Compile Remove="Migrations\20210924092120_AddEventCategory.Designer.cs" />
     <Compile Remove="Migrations\20210924093221_ChangeEventCategory.cs" />
     <Compile Remove="Migrations\20210924093221_ChangeEventCategory.Designer.cs" />
+    <Compile Remove="Migrations\20210926190607_ChangeSlideModel.cs" />
+    <Compile Remove="Migrations\20210926190607_ChangeSlideModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

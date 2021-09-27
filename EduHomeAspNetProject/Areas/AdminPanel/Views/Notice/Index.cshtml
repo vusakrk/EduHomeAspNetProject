@@ -1,0 +1,26 @@
+﻿@model List<NoticeBoard>
+
+<a asp-controller="NoticeBoard" asp-action="CreateNoticeBoardItem" class="btn btn-success" style="margin-top:80px">Create</a>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th> Id </th>
+            <th> Date </th>
+            <th> AuthorBy </th>
+            <th> Delete </th>
+            <th> Edit </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var notice in Model)
+        {
+        <tr>
+            <td> @notice.Id </td>
+            <th> @notice.Date </th>
+            <th> @notice.AuthorBy </th>
+            <td> <a asp-action="DeleteNoticeBoard" asp-route-id="@notice.Id" class="btn btn-danger"> Delete </a> </td>
+            <td> <a asp-action="EditNoticeBoardItem" asp-route-id="@notice.Id" class="btn btn-primary"> Edit </a> </td>
+        </tr>}
+    </tbody>
+</table>
+

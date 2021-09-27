@@ -1,9 +1,13 @@
-﻿using EduHomeAspNetProject.DAL;
+﻿using EduHomeAspNetProject.Areas.AdminPanel.ViewModels;
+using EduHomeAspNetProject.DAL;
+using EduHomeAspNetProject.Helpers;
 using EduHomeAspNetProject.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,27 +24,23 @@ namespace EduHomeAspNetProject.Areas.AdminPanel.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_context.Sliders);
+            List<Slider> Sliders = await _context.Sliders.ToListAsync();
+            return View(Sliders);
         }
 
-        public IActionResult Create()
+        public IActionResult CreateSlider()
         {
-            if (_context.Sliders.Count() >= 4)
-            {
-                return Content("Şəkil sayı 4-dən artıq ola bilməz");
-            }
+            
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ActionName("Create")]
-        public async Task<IActionResult> CreateSlider(Slider slides)
+        public async Task<IActionResult> Create(Slider slides)
         {
-            Slider slide = slides;
-            if (slides.Photo == null)
+            if (slides.Photos == null)
                 return View();
             foreach (IFormFile photo in slides.Photos)
             {

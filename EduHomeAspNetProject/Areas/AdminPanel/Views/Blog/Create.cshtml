@@ -1,0 +1,44 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form class="user" method="post" enctype="multipart/form-data">
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Image)
+        @Html.TextBoxFor(m => m.Image, new { @class = "form-control form-control-user", @type = "file" })
+        @Html.ValidationMessageFor(m => m.Image, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextAreaFor(m => m.Title, new { @class = "form-control form-control-user" })
+        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content, new { @class = "form-control form-control-user", @id = "cktext" })
+        @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label>Category</label>
+        <select class="form-control" name="BlogCategoryId">
+            <option value="value">Choose</option>
+            @foreach (var item in ViewBag.Categories)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+
+    </div>
+
+
+    <button asp-controller="Blog" asp-action="Index" class="btn btn-primary btn-user btn-block">Create</button>
+</form>
+
+
+

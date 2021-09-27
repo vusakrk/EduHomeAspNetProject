@@ -13,6 +13,8 @@ namespace EduHomeAspNetProject.Models
         public string Date { get; set; }
         [StringLength(255)]
         public string Description { get; set; }
-        
+        [StringLength(100)]
+        public string AuthorBy { get; set; }
+
     }
 }

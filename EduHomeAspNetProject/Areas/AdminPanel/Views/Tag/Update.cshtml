@@ -1,0 +1,12 @@
+﻿@model Tag
+@{
+    ViewBag.Title = "Update";
+}
+<form class="user" method="post" enctype="multipart/form-data" style=" margin-top: 80px; width: 30vw; margin-left: 180px;">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextAreaFor(m => m.Name, new { @class = "form-control form-control-user" })
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+    </div>
+    <button class="btn btn-primary btn-user btn-block">Update</button>
+</form>

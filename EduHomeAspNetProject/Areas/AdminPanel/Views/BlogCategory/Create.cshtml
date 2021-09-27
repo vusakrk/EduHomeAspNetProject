@@ -1,0 +1,18 @@
+﻿@model BlogCategory
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form class="user container" method="post" style="margin-top:80px;width:30vw;">
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextAreaFor(m => m.Name, new { @class = "form-control form-control-user" })
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+    </div>
+
+
+    <button class="btn btn-primary btn-user btn-block" asp-controller="BlogCategory" asp-action="Index">Create</button>
+</form>
+

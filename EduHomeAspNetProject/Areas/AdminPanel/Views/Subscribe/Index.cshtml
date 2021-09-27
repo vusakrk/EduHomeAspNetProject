@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Subscribe>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container" style="margin-top:80px">
+    <h1 class="h3 mb-2 text-gray-800">Subscribe</h1>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{ int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.Id</td>
+                            <td>@item.Email</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
